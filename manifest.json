@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Ditto",
+  "version": "3.0",
+  "description": "Financial literacy, made simple. Instant plain-English definitions right where you read.",
+  "permissions": ["activeTab", "scripting", "tabs", "sidePanel", "storage"],
+  "icons": {
+    "16":  "logo/icon16.png",
+    "48":  "logo/icon48.png",
+    "128": "logo/icon128.png"
+  },
+  "action": {
+    "default_title": "Open Ditto",
+    "default_icon": {
+      "16":  "logo/icon16.png",
+      "48":  "logo/icon48.png",
+      "128": "logo/icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["glossary.json"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
